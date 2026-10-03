@@ -1,5 +1,3 @@
-Here’s a shorter, clean `README.md` you can use:
-
 # 🌸 Bloom & Petal
 
 A lightweight single-page flower shop built with **HTML, CSS, JavaScript**, and served using **Nginx in Docker**.
@@ -75,5 +73,3 @@ This is a **client-side demo application**. Orders are stored only in the browse
 ---
 
 Made with 🌸 and a little love.
-
-This keeps the README small while still covering the project, features, Docker commands, and usage.
