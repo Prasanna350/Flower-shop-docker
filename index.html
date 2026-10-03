@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloom & Petal · Fresh Flowers Delivered</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff5f8;
+      --bg-soft: #fffafc;
+      --surface: #ffffff;
+      --surface-2: #ffeaf2;
+      --border: #ffd6e4;
+      --text: #4a2c3a;
+      --text-dim: #a87a91;
+      --brand: #ff8fb1;
+      --brand-2: #ffd66b;
+      --accent: #c3a6ff;
+      --shadow-sm: 0 10px 25px -8px rgba(255, 143, 177, 0.2);
+      --shadow-md: 0 20px 40px -12px rgba(255, 143, 177, 0.3);
+      --radius: 2rem;
+      --radius-sm: 1.2rem;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 214, 107, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(255, 143, 177, 0.12) 0%, transparent 35%),
+        radial-gradient(circle at 70% 85%, rgba(195, 166, 255, 0.1) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.8rem; }
+    .hidden { display: none !important; }
+
+    /* HEADER */
+    .header {
+      padding: 1.5rem 0 0.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text); }
+    .logo-icon { width: 44px; height: 44px; position: relative; }
+    .logo-flower { position: relative; width: 100%; height: 100%; }
+    .logo-flower .petal { position: absolute; width: 16px; height: 16px; border-radius: 50% 0 50% 0; opacity: 0.85; }
+    .logo-flower .p1 { top: 0; left: 14px; transform: rotate(0deg); background: #ff8fb1; }
+    .logo-flower .p2 { top: 14px; left: 28px; transform: rotate(72deg); background: #ffadc5; }
+    .logo-flower .p3 { top: 28px; left: 14px; transform: rotate(144deg); background: #ffd66b; }
+    .logo-flower .p4 { top: 14px; left: 0; transform: rotate(216deg); background: #ff8fb1; }
+    .logo-flower .p5 { top: 0; left: 0; transform: rotate(288deg); background: #c3a6ff; }
+    .logo-flower .center-dot {
+      position: absolute; top: 16px; left: 16px; width: 12px; height: 12px;
+      background: var(--brand-2); border-radius: 50%; z-index: 2;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+    }
+    .logo-text { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.9rem; letter-spacing: -0.02em; color: var(--text); }
+    .logo-text span { color: var(--brand); font-weight: 700; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; font-weight: 600; font-size: 1.05rem; color: var(--text-dim); }
+    .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s ease; position: relative; display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 3px;
+      background: var(--brand); border-radius: 3px; transition: width 0.25s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-cart { position: relative; }
+    .nav-cart .cart-badge {
+      position: absolute; top: -8px; right: -12px;
+      background: var(--brand); color: white; font-size: 0.7rem; font-weight: 700;
+      padding: 0.15rem 0.45rem; border-radius: 2rem; font-family: 'Quicksand', sans-serif;
+    }
+
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 3rem; padding: 2.5rem 0 4rem; position: relative; }
+    .hero-content { z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--surface-2); padding: 0.5rem 1.4rem 0.5rem 1rem;
+      border-radius: 4rem; font-weight: 600; font-size: 0.9rem;
+      color: var(--text-dim); border: 1px solid var(--border);
+      margin-bottom: 1.6rem; backdrop-filter: blur(4px);
+    }
+    .hero-badge .badge-icon {
+      display: inline-block; width: 18px; height: 18px;
+      background: var(--brand-2); border-radius: 50% 0 50% 0;
+      animation: float 2.5s ease-in-out infinite;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(15deg); } }
+    .hero h1 {
+      font-family: 'Fredoka', sans-serif; font-weight: 700;
+      font-size: clamp(2.6rem, 5.5vw, 4rem); line-height: 1.08;
+      letter-spacing: -0.02em; margin-bottom: 1.2rem; color: var(--text);
+    }
+    .hero h1 .highlight { color: var(--brand); position: relative; display: inline-block; }
+    .hero h1 .highlight::after {
+      content: ''; position: absolute; bottom: 6px; left: 0; width: 100%; height: 12px;
+      background: rgba(255, 214, 107, 0.4); border-radius: 8px; z-index: -1; transform: rotate(-1deg);
+    }
+    .hero p { font-size: 1.1rem; color: var(--text-dim); max-width: 500px; margin-bottom: 2rem; font-weight: 500; }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--brand); color: white; padding: 1rem 2.2rem;
+      border-radius: 4rem; font-weight: 700; font-size: 1.05rem;
+      text-decoration: none; box-shadow: 0 12px 28px -8px rgba(255, 143, 177, 0.5);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+      border: none; cursor: pointer; font-family: 'Quicksand', sans-serif;
+    }
+    .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 22px 38px -10px rgba(255, 143, 177, 0.6); background: #ff7aa5; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: transparent; color: var(--text); padding: 1rem 2rem;
+      border-radius: 4rem; font-weight: 700; font-size: 1.05rem;
+      text-decoration: none; border: 2px solid var(--border);
+      transition: all 0.25s ease; cursor: pointer; font-family: 'Quicksand', sans-serif;
+    }
+    .btn-secondary:hover { border-color: var(--brand); background: var(--surface); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 2px dashed var(--border); }
+    .hero-stat { text-align: left; }
+    .hero-stat .num { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--brand); line-height: 1.2; }
+    .hero-stat .label { font-size: 0.82rem; font-weight: 600; color: var(--text-dim); }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; z-index: 1; min-height: 420px; }
+    .hero-img-main {
+      position: relative; width: 100%; max-width: 380px; aspect-ratio: 4/5;
+      border-radius: 45% 45% 40% 40% / 50% 50% 45% 45%;
+      overflow: hidden; box-shadow: var(--shadow-md);
+      animation: morph 12s ease-in-out infinite alternate;
+      border: 6px solid var(--surface);
+    }
+    .hero-img-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @keyframes morph {
+      0% { border-radius: 45% 45% 40% 40% / 50% 50% 45% 45%; }
+      50% { border-radius: 40% 50% 45% 45% / 45% 50% 50% 45%; }
+      100% { border-radius: 48% 42% 42% 48% / 48% 48% 48% 48%; }
+    }
+    .hero-img-float { position: absolute; border-radius: 1.2rem; overflow: hidden; box-shadow: var(--shadow-md); border: 4px solid var(--surface); animation: bob 5s ease-in-out infinite; }
+    .hero-img-float img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .float-1 { width: 130px; height: 130px; bottom: 5%; left: -5%; border-radius: 50% 50% 50% 0; animation-delay: 0s; }
+    .float-2 { width: 110px; height: 110px; top: 5%; right: -5%; border-radius: 50% 0 50% 50%; animation-delay: -2s; }
+    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+    .hero-tag {
+      position: absolute; bottom: 2%; right: 8%;
+      background: var(--surface); border: 2px solid var(--border);
+      border-radius: 3rem; padding: 0.5rem 1rem;
+      font-size: 0.82rem; font-weight: 700; color: var(--text);
+      box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 0.5rem;
+      animation: bob 5s ease-in-out infinite; animation-delay: -1s;
+    }
+
+    /* FEATURES STRIP */
+    .features {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin: 0 0 4rem; padding: 1.5rem;
+      background: var(--surface); border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    }
+    .feature { text-align: center; padding: 0.8rem 0.5rem; border-right: 1px dashed var(--border); }
+    .feature:last-child { border-right: none; }
+    .feature .f-icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .feature .f-title { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text); }
+    .feature .f-sub { font-size: 0.78rem; color: var(--text-dim); font-weight: 600; }
+
+    /* SECTION HEADS */
+    .section-head { text-align: center; margin-bottom: 2.5rem; }
+    .section-tag { font-family: 'Caveat', cursive; font-size: 1.7rem; color: var(--brand); display: block; margin-bottom: 0.4rem; font-weight: 700; letter-spacing: 0.02em; }
+    .section-head h2 { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--text); letter-spacing: -0.01em; }
+    .section-head p { color: var(--text-dim); max-width: 560px; margin: 0.8rem auto 0; font-size: 1.1rem; font-weight: 500; }
+
+    /* CATEGORY TABS */
+    .category-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .cat-btn {
+      background: var(--surface); border: 2px solid var(--border);
+      border-radius: 4rem; padding: 0.55rem 1.4rem;
+      font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 0.95rem;
+      color: var(--text-dim); cursor: pointer; transition: all 0.25s ease;
+    }
+    .cat-btn:hover { border-color: var(--brand); color: var(--text); transform: translateY(-2px); }
+    .cat-btn.active { background: var(--brand); border-color: var(--brand); color: white; box-shadow: 0 10px 22px -8px rgba(255, 143, 177, 0.5); }
+
+    /* ---------- MENU GRID — AT LEAST 3 COLUMNS (fix) ---------- */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);  /* ← 3 columns, side-by-side */
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+    /* keep responsiveness: on medium screens 3 still fits, on tiny 2 or 1 */
+    @media (max-width: 750px) {
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+
+    .food-card {
+      background: var(--surface); border-radius: var(--radius-sm);
+      overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+      cursor: pointer; display: flex; flex-direction: column;
+    }
+    .food-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-md); border-color: var(--brand); }
+    .food-visual { position: relative; height: 180px; overflow: hidden; background: var(--surface-2); }
+    .food-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+    .food-card:hover .food-visual img { transform: scale(1.08); }
+    .cat-badge {
+      position: absolute; top: 0.8rem; left: 0.8rem;
+      background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(4px);
+      color: var(--text); font-size: 0.75rem; font-weight: 700;
+      padding: 0.25rem 0.75rem; border-radius: 3rem;
+      border: 1px solid var(--border); z-index: 2;
+    }
+    .quick-tag {
+      position: absolute; bottom: 0.8rem; right: 0.8rem;
+      background: rgba(74, 44, 58, 0.72); color: white;
+      font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.7rem;
+      border-radius: 3rem; z-index: 2; opacity: 0; transition: opacity 0.25s ease;
+    }
+    .food-card:hover .quick-tag { opacity: 1; }
+    .food-info { padding: 1rem 1rem 1.2rem; display: flex; flex-direction: column; flex: 1; }
+    .food-info h3 { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--text); margin-bottom: 0.25rem; }
+    .food-desc { color: var(--text-dim); font-size: 0.82rem; font-weight: 500; margin-bottom: 0.8rem; flex: 1; }
+    .food-footer { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+    .price { font-weight: 700; font-size: 1.2rem; color: var(--brand); font-family: 'Fredoka', sans-serif; }
+    .price::before { content: '$'; font-size: 0.9rem; margin-right: 1px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.4rem; background: var(--surface-2); border: 1px solid transparent;
+      border-radius: 3rem; padding: 0.5rem 1rem;
+      font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 0.85rem;
+      color: var(--text); cursor: pointer; transition: all 0.25s ease; white-space: nowrap;
+    }
+    .btn:hover { background: var(--brand); color: white; transform: translateY(-2px); box-shadow: 0 10px 20px -8px rgba(255, 143, 177, 0.5); }
+    .btn.ghost { background: transparent; border: 2px solid var(--border); }
+    .btn.ghost:hover { background: var(--surface-2); color: var(--text); border-color: var(--brand); }
+
+    /* CART PANEL */
+    .cart-panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow-md);
+      padding: 1.8rem 1.6rem; position: sticky; top: 1.5rem;
+      max-height: calc(100vh - 3rem); overflow-y: auto;
+    }
+    .cart-panel h3 { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.4rem; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .cart-badge { background: var(--brand); color: white; font-size: 0.8rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 2rem; font-family: 'Quicksand', sans-serif; }
+    .cart-empty { text-align: center; padding: 2rem 0.5rem; color: var(--text-dim); font-weight: 500; }
+    .cart-empty .icon { font-size: 3rem; margin-bottom: 0.8rem; line-height: 1; }
+    .cart-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px dashed var(--border); }
+    .cart-item-img { width: 48px; height: 48px; border-radius: 0.8rem; overflow: hidden; flex-shrink: 0; background: var(--surface-2); }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-weight: 700; font-size: 0.9rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cart-item-price { font-size: 0.78rem; color: var(--text-dim); font-weight: 600; }
+    .qty-controls { display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0; }
+    .qty-btn {
+      width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border);
+      background: var(--surface-2); color: var(--text); font-weight: 700; font-size: 0.95rem;
+      line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease; font-family: 'Quicksand', sans-serif;
+    }
+    .qty-btn:hover { background: var(--brand); color: white; border-color: var(--brand); }
+    .qty-value { min-width: 1.2rem; text-align: center; font-weight: 700; font-size: 0.9rem; }
+    .cart-summary { margin-top: 1.2rem; padding-top: 1rem; border-top: 2px dashed var(--border); }
+    .summary-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.92rem; font-weight: 600; color: var(--text-dim); padding: 0.25rem 0; }
+    .summary-row strong { color: var(--text); }
+    .summary-row.free strong { color: #57a05a; }
+    .summary-total { display: flex; justify-content: space-between; align-items: center; margin-top: 0.7rem; padding-top: 0.8rem; border-top: 2px dashed var(--border); }
+    .summary-total .label { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.15rem; }
+    .summary-total .amount { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--brand); }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(74, 44, 58, 0.45);
+      backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center;
+      padding: 1.5rem; z-index: 1000; opacity: 0; transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    .modal-card {
+      background: var(--surface); border-radius: var(--radius); max-width: 480px;
+      width: 100%; max-height: 90vh; overflow-y: auto; padding: 1.8rem;
+      position: relative; box-shadow: 0 30px 70px -20px rgba(74, 44, 58, 0.4);
+      animation: modalIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+    }
+    @keyframes modalIn { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+    .close-modal {
+      position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px;
+      border-radius: 50%; border: 1px solid var(--border); background: var(--surface-2);
+      color: var(--text); font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .close-modal:hover { background: var(--brand); color: white; border-color: var(--brand); transform: rotate(90deg); }
+    .modal-img { border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 1.2rem; background: var(--surface-2); }
+    .modal-img img { width: 100%; height: 260px; object-fit: cover; display: block; }
+    .modal-cat { display: inline-block; background: var(--surface-2); color: var(--text-dim); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.8rem; border-radius: 3rem; border: 1px solid var(--border); margin-bottom: 0.6rem; }
+    .modal-name { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.9rem; color: var(--text); margin-bottom: 0.3rem; }
+    .modal-price { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.7rem; color: var(--brand); margin-bottom: 0.8rem; }
+    .modal-price::before { content: '$'; font-size: 1.1rem; margin-right: 2px; }
+    .modal-desc { color: var(--text-dim); font-weight: 500; font-size: 1.05rem; margin-bottom: 1.5rem; }
+    .modal-actions { display: flex; flex-direction: column; gap: 0.7rem; }
+    .modal-actions .btn { padding: 0.9rem 1.5rem; font-size: 1rem; border-radius: 3rem; }
+
+    /* CHECKOUT / CONFIRMATION */
+    .view-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 2rem; margin-bottom: 5rem; }
+    .view-panel h2 { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 2rem; margin-bottom: 0.4rem; }
+    .view-panel .sub { color: var(--text-dim); font-weight: 500; margin-bottom: 1.8rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-grid .full { grid-column: 1 / -1; }
+    .field label { display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.35rem; color: var(--text); }
+    .field input, .field textarea {
+      width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border);
+      border-radius: 1rem; font-family: 'Quicksand', sans-serif; font-weight: 600;
+      font-size: 1rem; color: var(--text); background: var(--bg-soft);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease; outline: none; resize: vertical;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(255, 143, 177, 0.15); background: var(--surface); }
+    .checkout-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: start; }
+    .checkout-summary { background: var(--surface-2); border-radius: var(--radius-sm); padding: 1.5rem; border: 1px solid var(--border); }
+    .receipt-items { margin-bottom: 1rem; }
+    .receipt-line { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.95rem; font-weight: 600; padding: 0.3rem 0; color: var(--text); }
+    .receipt-line .name { color: var(--text-dim); }
+    .receipt-row { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.95rem; padding: 0.25rem 0; }
+    .receipt-row .k { color: var(--text-dim); font-weight: 600; }
+    .receipt-row .v { font-weight: 700; }
+    .receipt-row.total { margin-top: 0.6rem; padding-top: 0.7rem; border-top: 2px dashed var(--border); font-family: 'Fredoka', sans-serif; font-size: 1.15rem; }
+    .receipt-row.total .v { color: var(--brand); font-size: 1.4rem; }
+    .receipt-card { background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius); padding: 2rem; max-width: 620px; margin: 0 auto; box-shadow: var(--shadow-sm); }
+    .receipt-id { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 2rem; color: var(--brand); text-align: center; }
+    .receipt-id-label { text-align: center; font-size: 0.8rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+
+    /* ORDERS */
+    .orders-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 5rem; }
+    .order-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.5rem; box-shadow: var(--shadow-sm); transition: all 0.25s ease; }
+    .order-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--brand); }
+    .order-head { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; margin-bottom: 0.8rem; }
+    .order-id { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .status-pill { background: var(--surface-2); color: var(--text); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.8rem; border-radius: 3rem; border: 1px solid var(--border); }
+    .order-meta { font-size: 0.88rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.25rem; }
+    .order-items-list { margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px dashed var(--border); font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.8; }
+    .order-total { margin-top: 0.8rem; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--brand); }
+    .empty { text-align: center; padding: 3rem 1rem; color: var(--text-dim); font-weight: 600; }
+    .empty .icon { font-size: 3.5rem; margin-bottom: 0.8rem; line-height: 1; }
+
+    /* TOASTS */
+    .toast-area { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 0.6rem; z-index: 2000; pointer-events: none; width: min(92vw, 420px); }
+    .toast { background: #4a2c3a; color: white; padding: 0.85rem 1.2rem; border-radius: 1rem; font-weight: 600; font-size: 0.95rem; box-shadow: 0 20px 40px -12px rgba(74, 44, 58, 0.5); text-align: center; animation: toastIn 0.3s ease; }
+    .toast.success { background: var(--brand); }
+    @keyframes toastIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* FLOATING PETALS */
+    .petal { position: fixed; top: -2rem; font-size: 1.4rem; z-index: 0; pointer-events: none; animation: fall linear forwards; opacity: 0.7; }
+    @keyframes fall { 0% { transform: translateY(-5vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
+
+    /* SHOP LAYOUT */
+    .shop-layout { display: grid; grid-template-columns: 1fr 330px; gap: 2rem; align-items: start; }
+    @media (max-width: 1000px) {
+      .shop-layout { grid-template-columns: 1fr; }
+      .cart-panel { position: static; max-height: none; }
+      .checkout-layout { grid-template-columns: 1fr; }
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .feature:nth-child(2) { border-right: none; }
+      .feature:nth-child(1), .feature:nth-child(2) { border-bottom: 1px dashed var(--border); }
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 2rem; padding: 2rem 0 3rem; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-stat { text-align: center; }
+      .hero-visual { min-height: 320px; order: -1; }
+      .hero-img-main { max-width: 260px; }
+      .float-1 { width: 90px; height: 90px; }
+      .float-2 { width: 80px; height: 80px; }
+      .nav-links { display: none; }
+      .header { justify-content: center; }
+      .logo { margin: 0 auto; }
+    }
+    @media (max-width: 500px) {
+      .container { padding: 0 1.2rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+      .feature { border-right: none; border-bottom: 1px dashed var(--border); }
+      .feature:last-child { border-bottom: none; }
+      .view-panel { padding: 1.4rem; }
+      .receipt-card { padding: 1.4rem; }
+      .footer { flex-direction: column; text-align: center; }
+      .footer-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    }
+    .divider { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 1rem 0 2rem; color: var(--border); font-size: 1.2rem; letter-spacing: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="header">
+      <a href="#" class="logo" onclick="goHome(); return false;">
+        <div class="logo-icon">
+          <div class="logo-flower">
+            <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div>
+            <div class="center-dot"></div>
+          </div>
+        </div>
+        <span class="logo-text">Bloom<span>&</span>Petal</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#" onclick="scrollToMenu(); return false;">🌸 Bouquets</a>
+        <a href="#" id="nav-orders" onclick="showOrders(); return false;">My Orders</a>
+        <a href="#" class="nav-cart" onclick="scrollToCart(); return false;">🛒 Cart <span class="cart-badge hidden" id="nav-cart-badge">0</span></a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="badge-icon"></span> 🌷 Farm-fresh · Same-day delivery</div>
+        <h1>Fresh flowers<br><span class="highlight">delivered with a</span><br>little love.</h1>
+        <p>Every bouquet at Bloom &amp; Petal is hand-tied by our florists the morning it ships — so your blooms arrive looking like they were just picked from the garden. Choose a bouquet, add a note, and we'll handle the rest. 🌸</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="scrollToMenu()">🌸 Shop Bouquets</button>
+          <button class="btn-secondary" onclick="scrollToCart()">View Cart 🛒</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num">7-day</div><div class="label">Freshness guarantee</div></div>
+          <div class="hero-stat"><div class="num">Free</div><div class="label">Delivery over $25</div></div>
+          <div class="hero-stat"><div class="num">4.9★</div><div class="label">2,400+ happy senders</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img-main">
+          <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=800&q=80&auto=format&fit=crop" alt="Fresh pink peonies and roses bouquet">
+        </div>
+        <div class="hero-img-float float-1">
+          <img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?w=400&q=80&auto=format&fit=crop" alt="Colorful tulips in a vase">
+        </div>
+        <div class="hero-img-float float-2">
+          <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=400&q=80&auto=format&fit=crop" alt="Sunflowers in a bouquet">
+        </div>
+        <div class="hero-tag">🌿 Cut fresh today · 💐 Hand-tied</div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <div class="features">
+      <div class="feature"><div class="f-icon">🌷</div><div class="f-title">Hand-tied Bouquets</div><div class="f-sub">Arranged by florists, not machines.</div></div>
+      <div class="feature"><div class="f-icon">🚚</div><div class="f-title">Same-Day Delivery</div><div class="f-sub">Order before 2pm, arrives today.</div></div>
+      <div class="feature"><div class="f-icon">💌</div><div class="f-title">Free Note Card</div><div class="f-sub">Add a sweet message at checkout.</div></div>
+      <div class="feature"><div class="f-icon">🌿</div><div class="f-title">7-Day Freshness</div><div class="f-sub">Guaranteed fresh, or we replace it.</div></div>
+    </div>
+
+    <!-- VIEW: MENU -->
+    <div id="view-menu">
+      <div class="divider">✿ ✿ ✿</div>
+      <section id="menu-section">
+        <div class="section-head">
+          <span class="section-tag">— handpicked for you —</span>
+          <h2>This week's favourite blooms</h2>
+          <p>Each arrangement is one‑of‑a‑kind, made with the freshest stems from local growers.</p>
+        </div>
+        <div class="category-tabs" id="category-tabs"></div>
+        <div class="shop-layout">
+          <div class="menu-grid" id="menu-grid"></div>
+          <aside class="cart-panel" id="cart-panel">
+            <h3>Your Bouquet <span class="cart-badge hidden" id="cart-badge">0</span></h3>
+            <div id="cart-content"></div>
+          </aside>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: CHECKOUT -->
+    <div id="view-checkout" class="hidden">
+      <div class="view-panel">
+        <h2>Checkout 🌸</h2>
+        <p class="sub">Almost there — just a few details and your blooms will be on their way.</p>
+        <div class="checkout-layout">
+          <div class="form-grid">
+            <div class="field"><label for="name">Full name</label><input type="text" id="name" placeholder="e.g. Maya Patel"></div>
+            <div class="field"><label for="phone">Phone number</label><input type="tel" id="phone" placeholder="e.g. 98765 43210"></div>
+            <div class="field full"><label for="address">Delivery address</label><input type="text" id="address" placeholder="Street, city, pincode"></div>
+            <div class="field full"><label for="notes">Delivery notes (optional)</label><textarea id="notes" rows="3" placeholder="Gate code, best time to deliver, etc."></textarea></div>
+            <div class="field full" style="display:flex; gap:0.7rem; flex-wrap:wrap;">
+              <button class="btn ghost" onclick="goHome()" style="flex:1; justify-content:center; padding:0.9rem 1.2rem;">← Back to shop</button>
+              <button class="btn-primary" onclick="placeOrder()" style="flex:2; justify-content:center;">Place order 🌷</button>
+            </div>
+          </div>
+          <div class="checkout-summary" id="checkout-summary"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: CONFIRMATION -->
+    <div id="view-confirmation" class="hidden">
+      <div class="section-head" style="margin-top:1rem;">
+        <span class="section-tag">— thank you —</span>
+        <h2>Your bouquet is being prepared</h2>
+        <p>We've sent the details to our florists. Here's your receipt.</p>
+      </div>
+      <div class="receipt-card" id="receipt-card"></div>
+      <div style="text-align:center; margin:2rem 0 5rem; display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap;">
+        <button class="btn" onclick="goHome()">Order more flowers</button>
+        <button class="btn ghost" onclick="showOrders()">View my orders</button>
+      </div>
+    </div>
+
+    <!-- VIEW: ORDERS -->
+    <div id="view-orders" class="hidden">
+      <div class="section-head" style="margin-top:1rem;">
+        <span class="section-tag">— your garden —</span>
+        <h2>Order history</h2>
+        <p>Every bouquet you've ordered, all in one place.</p>
+      </div>
+      <div class="orders-grid" id="orders-grid"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div style="display:flex; align-items:center; gap:0.6rem;">
+        <span style="font-size:1.8rem;">🌸</span>
+        <span class="logo-text" style="font-size:1.5rem;">Bloom<span style="color:var(--brand);">&</span>Petal</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Contact</a><a href="#">FAQs</a>
+      </div>
+      <div style="font-size:0.9rem;">© 2025 Bloom &amp; Petal · Fresh flowers daily</div>
+    </footer>
+  </div>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card">
+      <button class="close-modal" onclick="closeModal()" aria-label="Close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS MODAL (optional, kept for completeness) -->
+  <div class="modal-overlay" id="hiw-overlay">
+    <div class="modal-card">
+      <button class="close-modal" onclick="closeHiw()" aria-label="Close">✕</button>
+      <div style="text-align:center;">
+        <div style="font-size:3.5rem; margin-bottom:0.5rem;">🌸</div>
+        <h2 class="modal-name" style="font-size:1.9rem;">How it works</h2>
+        <p class="modal-desc" style="margin-bottom:1.5rem;">Fresh flowers in three simple steps.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.2rem; text-align:left;">
+        <div style="display:flex; gap:1rem; align-items:flex-start;">
+          <div style="flex-shrink:0; width:44px; height:44px; border-radius:50%; background:var(--surface-2); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--brand);">1</div>
+          <div><h4 style="font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.1rem; margin-bottom:0.2rem;">Pick your blooms</h4><p style="color:var(--text-dim); font-weight:500; font-size:0.95rem; margin:0;">Browse our seasonal selection and add your favourites to the bouquet.</p></div>
+        </div>
+        <div style="display:flex; gap:1rem; align-items:flex-start;">
+          <div style="flex-shrink:0; width:44px; height:44px; border-radius:50%; background:var(--surface-2); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--brand);">2</div>
+          <div><h4 style="font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.1rem; margin-bottom:0.2rem;">We hand‑tie it fresh</h4><p style="color:var(--text-dim); font-weight:500; font-size:0.95rem; margin:0;">Our florists arrange your bouquet the morning of delivery, using stems cut that day.</p></div>
+        </div>
+        <div style="display:flex; gap:1rem; align-items:flex-start;">
+          <div style="flex-shrink:0; width:44px; height:44px; border-radius:50%; background:var(--surface-2); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--brand);">3</div>
+          <div><h4 style="font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.1rem; margin-bottom:0.2rem;">Delivered to your door</h4><p style="color:var(--text-dim); font-weight:500; font-size:0.95rem; margin:0;">Same‑day delivery on orders before 2pm, with tracking updates along the way.</p></div>
+        </div>
+      </div>
+      <div class="modal-actions" style="margin-top:1.8rem;">
+        <button class="btn" onclick="closeHiw(); scrollToMenu();">Start shopping 🌷</button>
+        <button class="btn ghost" onclick="closeHiw()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOASTS -->
+  <div class="toast-area" id="toast-area"></div>
+
+  <script>
+    // ============================================================
+    // STATE
+    // ============================================================
+    const state = {
+      menu: [],
+      cart: new Map(),
+      activeCategory: "All",
+      lastOrder: null,
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    function show(viewId) {
+      ["view-menu","view-checkout","view-confirmation","view-orders"]
+        .forEach(v => $(v).classList.toggle("hidden", v !== viewId));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toast(msg, type = "error") {
+      const area = $("toast-area");
+      const el = document.createElement("div");
+      el.className = "toast " + (type === "success" ? "success" : "");
+      el.textContent = msg;
+      area.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }
+
+    const store = {
+      get(key, fallback) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (raw === null) return fallback;
+          return JSON.parse(raw);
+        } catch (e) {
+          console.warn("store.get failed for", key, e);
+          return fallback;
+        }
+      },
+      set(key, val) {
+        try {
+          localStorage.setItem(key, JSON.stringify(val));
+          return true;
+        } catch (e) {
+          console.warn("store.set failed for", key, e);
+          return false;
+        }
+      }
+    };
+
+    // ============================================================
+    // SCROLL HELPERS
+    // ============================================================
+    function scrollToMenu() {
+      if ($("view-menu").classList.contains("hidden")) {
+        goHome();
+      }
+      setTimeout(() => {
+        const menuSection = $("menu-section");
+        if (menuSection) {
+          menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+
+    function scrollToCart() {
+      const panel = $("cart-panel");
+      if (panel) {
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function showHowItWorks() { $("hiw-overlay").classList.add("active"); }
+    function closeHiw() { $("hiw-overlay").classList.remove("active"); }
+    $("hiw-overlay").addEventListener("click", (e) => { if (e.target === $("hiw-overlay")) closeHiw(); });
+
+    // ============================================================
+    // MENU DATA
+    // ============================================================
+    const MENU = [
+      { id: "f1",  name: "Cherry Blossom",   category: "Elegant",   price: 18.50, desc: "Delicate pink petals that whisper spring. Perfect for a gentle soul.",
+        img: "https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?w=600&q=80&auto=format&fit=crop" },
+      { id: "f6",  name: "Velvet Rose",      category: "Elegant",   price: 24.00, desc: "Classic charm with a soft, powdery scent. Pure elegance.",
+        img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=80&auto=format&fit=crop" },
+      { id: "f8",  name: "Peony Cloud",      category: "Elegant",   price: 26.40, desc: "Fluffy peony blooms — soft, luxurious, and utterly dreamy.",
+        img: "https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=600&q=80&auto=format&fit=crop" },
+      { id: "f2",  name: "Tulip Dream",      category: "Fresh",     price: 14.90, desc: "Buttercup-yellow tulips — a pocketful of sunshine.",
+        img: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=600&q=80&auto=format&fit=crop" },
+      { id: "f14", name: "Blue Delphinium",  category: "Fresh",     price: 17.80, desc: "Tall spires of cobalt blue — a dramatic garden favourite.",
+        img: "https://images.unsplash.com/photo-1596726038408-4b2a3c4a4c3e?w=600&q=80&auto=format&fit=crop" },
+      { id: "f16", name: "Sweet Alyssum",    category: "Fresh",     price: 13.60, desc: "Tiny honey-scented flowers — delicate and utterly charming.",
+        img: "https://images.unsplash.com/photo-1587556930720-56d1b6e697a9?w=600&q=80&auto=format&fit=crop" },
+      { id: "f3",  name: "Daisy Chain",      category: "Cheerful",  price: 12.00, desc: "Cheerful daisies to brighten any room. Simple and sweet.",
+        img: "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=600&q=80&auto=format&fit=crop" },
+      { id: "f5",  name: "Sunny Sunflower",  category: "Cheerful",  price: 16.80, desc: "A big smile in flower form. Follows the light all day.",
+        img: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=600&q=80&auto=format&fit=crop" },
+      { id: "f11", name: "Marigold Spark",   category: "Cheerful",  price: 11.20, desc: "Bright marigolds that add a golden spark to any day.",
+        img: "https://images.unsplash.com/photo-1502977249166-824b3a8a4d6d?w=600&q=80&auto=format&fit=crop" },
+      { id: "f17", name: "Golden Mimosa",    category: "Cheerful",  price: 19.90, desc: "Fluffy golden mimosa — sunshine captured in a bloom.",
+        img: "https://images.unsplash.com/photo-1587883012610-e3df17d41270?w=600&q=80&auto=format&fit=crop" },
+      { id: "f4",  name: "Hibiscus Glow",    category: "Tropical",  price: 22.30, desc: "Tropical vibes with a vivid coral bloom. Instant holiday mood.",
+        img: "https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=600&q=80&auto=format&fit=crop" },
+      { id: "f15", name: "Coral Charm",      category: "Tropical",  price: 23.40, desc: "Vibrant coral-hued blooms that bring warmth to any space.",
+        img: "https://images.unsplash.com/photo-1560717845-968823efbee1?w=600&q=80&auto=format&fit=crop" },
+      { id: "f7",  name: "White Blossom",    category: "Serene",    price: 19.20, desc: "Peaceful and pure — like a quiet morning in the garden.",
+        img: "https://images.unsplash.com/photo-1502977249166-824b3a8a4d6d?w=600&q=80&auto=format&fit=crop" },
+      { id: "f13", name: "Pink Hydrangea",   category: "Serene",    price: 21.50, desc: "Voluminous pink hydrangea — a cloud of soft, pastel petals.",
+        img: "https://images.unsplash.com/photo-1595351298020-038700609878?w=600&q=80&auto=format&fit=crop" },
+      { id: "f9",  name: "Eucalyptus Hug",   category: "Calming",   price: 15.40, desc: "Soft green sprigs — calming and fresh. Great for any bouquet.",
+        img: "https://images.unsplash.com/photo-1600428877878-1a0fd85beda8?w=600&q=80&auto=format&fit=crop" },
+      { id: "f10", name: "Lavender Breeze",  category: "Calming",   price: 20.10, desc: "Soothing lavender stems for calm evenings and sweet dreams.",
+        img: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=600&q=80&auto=format&fit=crop" },
+      { id: "f12", name: "Orchid Elegance",  category: "Luxury",    price: 32.00, desc: "Exotic orchid blooms for a touch of timeless luxury.",
+        img: "https://images.unsplash.com/photo-1567748157439-651aca2ff064?w=600&q=80&auto=format&fit=crop" },
+      { id: "f18", name: "Purple Allium",    category: "Luxury",    price: 28.70, desc: "Striking spherical allium — a bold, architectural statement.",
+        img: "https://images.unsplash.com/photo-1595351298020-038700609878?w=600&q=80&auto=format&fit=crop" },
+    ];
+
+    // ============================================================
+    // MENU VIEW
+    // ============================================================
+    function goHome() {
+      state.menu = MENU;
+      renderCategories();
+      renderMenu();
+      renderCart();
+      show("view-menu");
+    }
+
+    function renderCategories() {
+      const cats = ["All", ...new Set(state.menu.map(m => m.category))];
+      $("category-tabs").innerHTML = cats.map(c => `
+        <button class="cat-btn ${c === state.activeCategory ? "active" : ""}"
+                onclick="setCategory('${c}')">${c}</button>
+      `).join("");
+    }
+
+    function setCategory(cat) {
+      state.activeCategory = cat;
+      renderCategories();
+      renderMenu();
+    }
+
+    function renderMenu() {
+      const items = state.activeCategory === "All"
+        ? state.menu
+        : state.menu.filter(m => m.category === state.activeCategory);
+
+      $("menu-grid").innerHTML = items.map(m => `
+        <div class="food-card" onclick="openProductModal('${m.id}')">
+          <div class="food-visual">
+            <span class="cat-badge">${m.category}</span>
+            <span class="quick-tag">Tap for details</span>
+            <img src="${m.img}" alt="${m.name}" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&q=80&auto=format&fit=crop'">
+          </div>
+          <div class="food-info">
+            <h3>${m.name}</h3>
+            <p class="food-desc">${m.desc}</p>
+            <div class="food-footer">
+              <span class="price">${m.price.toFixed(2)}</span>
+              <button class="btn" onclick="event.stopPropagation(); addToCart('${m.id}')">+ Add</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // ============================================================
+    // PRODUCT MODAL
+    // ============================================================
+    function openProductModal(id) {
+      const m = state.menu.find(x => x.id === id);
+      if (!m) return;
+      $("modal-body").innerHTML = `
+        <div class="modal-img"><img src="${m.img}" alt="${m.name}"
+             onerror="this.src='https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&q=80&auto=format&fit=crop'"></div>
+        <div class="modal-cat">${m.category}</div>
+        <h2 class="modal-name">${m.name}</h2>
+        <div class="modal-price">${m.price.toFixed(2)}</div>
+        <p class="modal-desc">${m.desc}</p>
+        <div class="modal-actions">
+          <button class="btn" onclick="addToCart('${m.id}'); closeModal();">🌸 Add to Bouquet</button>
+          <button class="btn ghost" onclick="closeModal()">Maybe Later</button>
+        </div>
+      `;
+      $("modal-overlay").classList.add("active");
+    }
+
+    function closeModal() { $("modal-overlay").classList.remove("active"); }
+    $("modal-overlay").addEventListener("click", (e) => { if (e.target === $("modal-overlay")) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeModal(); closeHiw(); } });
+
+    // ============================================================
+    // CART
+    // ============================================================
+    function addToCart(id) {
+      const current = state.cart.get(id) || 0;
+      state.cart.set(id, current + 1);
+      renderCart();
+      const item = state.menu.find(m => m.id === id);
+      toast(`Added ${item.name} to your bouquet 🌸`, "success");
+    }
+
+    function changeQty(id, delta) {
+      const current = state.cart.get(id) || 0;
+      const next = current + delta;
+      if (next <= 0) state.cart.delete(id);
+      else state.cart.set(id, next);
+      renderCart();
+    }
+
+    function clearCart() {
+      state.cart.clear();
+      renderCart();
+      toast("Bouquet cleared 🌷");
+    }
+
+    function getCartDetails() {
+      const items = [];
+      let subtotal = 0;
+      for (const [id, qty] of state.cart.entries()) {
+        const m = state.menu.find(x => x.id === id);
+        if (!m) continue;
+        const lineTotal = +(m.price * qty).toFixed(2);
+        subtotal += lineTotal;
+        items.push({ ...m, qty, lineTotal });
+      }
+      const deliveryFee = subtotal > 25 ? 0 : (subtotal > 0 ? 2.99 : 0);
+      const tax = +(subtotal * 0.08).toFixed(2);
+      const total = +(subtotal + deliveryFee + tax).toFixed(2);
+      return { items, subtotal: +subtotal.toFixed(2), deliveryFee, tax, total };
+    }
+
+    function renderCart() {
+      const content = $("cart-content");
+      const { items, subtotal, deliveryFee, tax, total } = getCartDetails();
+      const totalQty = items.reduce((s, i) => s + i.qty, 0);
+
+      const badge = $("cart-badge");
+      const navBadge = $("nav-cart-badge");
+      if (totalQty > 0) {
+        badge.textContent = totalQty;
+        badge.classList.remove("hidden");
+        navBadge.textContent = totalQty;
+        navBadge.classList.remove("hidden");
+      } else {
+        badge.classList.add("hidden");
+        navBadge.classList.add("hidden");
+      }
+
+      if (items.length === 0) {
+        content.innerHTML = `
+          <div class="cart-empty">
+            <div class="icon">🌷</div>
+            <p>Your bouquet is empty.</p>
+            <p style="font-size:.8rem;margin-top:.5rem;opacity:.8;">Pick a bloom you love!</p>
+          </div>`;
+        return;
+      }
+
+      content.innerHTML = `
+        ${items.map(it => `
+          <div class="cart-item">
+            <div class="cart-item-img"><img src="${it.img}" alt="${it.name}"
+                 onerror="this.src='https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&q=80&auto=format&fit=crop'"></div>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${it.name}</div>
+              <div class="cart-item-price">$${it.price.toFixed(2)} each</div>
+            </div>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty('${it.id}', -1)">−</button>
+              <span class="qty-value">${it.qty}</span>
+              <button class="qty-btn" onclick="changeQty('${it.id}', 1)">+</button>
+            </div>
+          </div>
+        `).join("")}
+
+        <div class="cart-summary">
+          <div class="summary-row"><span>Subtotal</span><strong>$${subtotal.toFixed(2)}</strong></div>
+          <div class="summary-row ${deliveryFee === 0 ? "free" : ""}">
+            <span>Delivery</span>
+            <strong>${deliveryFee === 0 ? "FREE 🌿" : "$" + deliveryFee.toFixed(2)}</strong>
+          </div>
+          <div class="summary-row"><span>Tax (8%)</span><strong>$${tax.toFixed(2)}</strong></div>
+          <div class="summary-total">
+            <span class="label">Total</span>
+            <span class="amount">$${total.toFixed(2)}</span>
+          </div>
+          ${deliveryFee > 0 ? `<p style="font-size:.75rem;margin-top:.5rem;text-align:center;color:var(--text-dim);">Add $${(25 - subtotal).toFixed(2)} more for free delivery 🌸</p>` : ""}
+        </div>
+
+        <div style="display:flex;gap:.5rem;margin-top:1.25rem;">
+          <button class="btn ghost" onclick="clearCart()" style="flex:1;justify-content:center;">Clear</button>
+          <button class="btn" onclick="goToCheckout()" style="flex:2;justify-content:center;">Checkout →</button>
+        </div>
+      `;
+    }
+
+    // ============================================================
+    // CHECKOUT
+    // ============================================================
+    function goToCheckout() {
+      if (state.cart.size === 0) return toast("Your bouquet is empty 🌷");
+      renderCheckoutSummary();
+      show("view-checkout");
+    }
+
+    function renderCheckoutSummary() {
+      const { items, subtotal, deliveryFee, tax, total } = getCartDetails();
+      $("checkout-summary").innerHTML = `
+        <div class="receipt-items">
+          ${items.map(it => `
+            <div class="receipt-line">
+              <span class="name"><strong>${it.qty}×</strong> ${it.name}</span>
+              <span>$${it.lineTotal.toFixed(2)}</span>
+            </div>
+          `).join("")}
+        </div>
+        <div class="summary-row"><span>Subtotal</span><strong>$${subtotal.toFixed(2)}</strong></div>
+        <div class="summary-row ${deliveryFee === 0 ? "free" : ""}">
+          <span>Delivery</span>
+          <strong>${deliveryFee === 0 ? "FREE 🌿" : "$" + deliveryFee.toFixed(2)}</strong>
+        </div>
+        <div class="summary-row"><span>Tax (8%)</span><strong>$${tax.toFixed(2)}</strong></div>
+        <div class="summary-total">
+          <span class="label">Total</span>
+          <span class="amount">$${total.toFixed(2)}</span>
+        </div>
+      `;
+    }
+
+    function placeOrder() {
+      const name = $("name").value.trim();
+      const phone = $("phone").value.trim();
+      const address = $("address").value.trim();
+      const notes = $("notes").value.trim();
+
+      if (!name) return toast("Please enter your name");
+      if (!phone || phone.length < 5) return toast("Please enter a valid phone number");
+      if (!address) return toast("Please enter your delivery address");
+
+      const { items, subtotal, deliveryFee, tax, total } = getCartDetails();
+
+      const order = {
+        id: "BP" + Date.now().toString().slice(-6),
+        items: items.map(it => ({
+          id: it.id, name: it.name, img: it.img,
+          qty: it.qty, price: it.price, lineTotal: it.lineTotal,
+        })),
+        subtotal, deliveryFee, tax, total,
+        name, phone, address, notes,
+        status: "Preparing",
+        created_at: new Date().toLocaleString("en-US", {
+          month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
+        }),
+      };
+
+      // --- FIX: always write to localStorage; keep latest first ---
+      const orders = store.get("bp_orders", []);
+      orders.unshift(order);
+      const saved = store.set("bp_orders", orders);
+      if (!saved) {
+        toast("Could not save order (storage issue).", "error");
+      }
+
+      state.lastOrder = order;
+      state.cart.clear();
+      renderCart();
+
+      $("name").value = "";
+      $("phone").value = "";
+      $("address").value = "";
+      $("notes").value = "";
+
+      renderReceipt(order);
+      toast("Your bouquet is on its way! 🌸", "success");
+      show("view-confirmation");
+    }
+
+    function renderReceipt(o) {
+      $("receipt-card").innerHTML = `
+        <div class="receipt-id">#${o.id}</div>
+        <div class="receipt-id-label">Order Reference</div>
+
+        <div class="receipt-items">
+          ${o.items.map(it => `
+            <div class="receipt-line">
+              <span class="name"><strong>${it.qty}×</strong> ${it.name}</span>
+              <span>$${it.lineTotal.toFixed(2)}</span>
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="receipt-row"><span class="k">Subtotal</span><span class="v">$${o.subtotal.toFixed(2)}</span></div>
+        <div class="receipt-row"><span class="k">Delivery</span><span class="v">${o.deliveryFee === 0 ? "FREE 🌿" : "$" + o.deliveryFee.toFixed(2)}</span></div>
+        <div class="receipt-row"><span class="k">Tax</span><span class="v">$${o.tax.toFixed(2)}</span></div>
+        <div class="receipt-row total"><span class="k">Total</span><span class="v">$${o.total.toFixed(2)}</span></div>
+
+        <div style="margin-top:1.25rem;padding-top:1rem;border-top:2px dashed var(--border);">
+          <div class="receipt-row"><span class="k">Name</span><span class="v">${o.name}</span></div>
+          <div class="receipt-row"><span class="k">Phone</span><span class="v">${o.phone}</span></div>
+          <div class="receipt-row"><span class="k">Address</span><span class="v" style="max-width:60%">${o.address}</span></div>
+          ${o.notes ? `<div class="receipt-row"><span class="k">Note</span><span class="v" style="max-width:60%;font-weight:500">${o.notes}</span></div>` : ""}
+          <div class="receipt-row"><span class="k">Placed at</span><span class="v" style="font-weight:500;color:var(--text-dim)">${o.created_at}</span></div>
+        </div>
+      `;
+    }
+
+    // ============================================================
+    // ORDERS LIST — reads from localStorage (fixed)
+    // ============================================================
+    function showOrders() {
+      const orders = store.get("bp_orders", []);
+      const grid = $("orders-grid");
+
+      if (!orders.length) {
+        grid.innerHTML = `
+          <div class="empty" style="grid-column:1/-1">
+            <div class="icon">🌼</div>
+            <p>No orders yet — your garden awaits.</p>
+            <button class="btn" style="margin-top:1rem" onclick="goHome()">Browse Bouquets</button>
+          </div>`;
+      } else {
+        grid.innerHTML = orders.map(o => `
+          <div class="order-card">
+            <div class="order-head">
+              <span class="order-id">#${o.id}</span>
+              <span class="status-pill">${o.status}</span>
+            </div>
+            <div class="order-meta">👤 ${o.name}</div>
+            <div class="order-meta">📍 ${o.address}</div>
+            <div class="order-meta">🕐 ${o.created_at}</div>
+            <div class="order-items-list">
+              ${o.items.map(it => `${it.qty}× ${it.name}`).join("<br>")}
+            </div>
+            <div class="order-total">$${o.total.toFixed(2)}</div>
+          </div>
+        `).join("");
+      }
+      show("view-orders");
+    }
+
+    // ============================================================
+    // FLOATING PETALS
+    // ============================================================
+    (function spawnPetals() {
+      const petals = ["🌸","🌷","🌼","🌺","💮","🏵️","🌻","🌹"];
+      setInterval(() => {
+        const p = document.createElement("div");
+        p.className = "petal";
+        p.textContent = petals[Math.floor(Math.random() * petals.length)];
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.animationDuration = (8 + Math.random() * 8) + "s";
+        p.style.fontSize = (1 + Math.random() * 1.2) + "rem";
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 16000);
+      }, 1200);
+    })();
+
+    // ============================================================
+    // BOOT
+    // ============================================================
+    goHome();
+  </script>
+</body>
+</html>
